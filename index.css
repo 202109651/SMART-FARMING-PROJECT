@@ -1,0 +1,158 @@
+/* Center everything on the page */
+body.login-page {
+    margin: 0;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    background-color: #f4f4f4; 
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header */
+header h1 {
+    font-size: 28px;
+    color: #28a745;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Bigger login box */
+#mid {
+    width: 400px;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+}
+
+/* Style the form heading */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Adjusted spacing between email and password fields */
+.input-container {
+    display: flex;
+    flex-direction: column; /* Stack label and input */
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px; /* More spacing between fields */
+}
+
+.input-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style input fields */
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the Show button */
+#showPassword {
+    width: 100px;
+    padding: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Style submit button */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* Add hover effect */
+button:hover {
+    background-color: #218838;
+}
+
+/* Style the checkbox and label */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.checkbox-container label {
+    margin-left: 5px;
+}
+/* Center everything on index.html without affecting login.html */
+body.index-page {
+    margin: 0;
+    height: 100vh; /* Full height */
+    display: flex;
+    flex-direction: column; /* Stack elements */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+/* Keep header and footer centered */
+header, footer {
+    text-align: center;
+}
+
+/* Styling for main content area */
+#mid {
+    width: 500px; /* Adjust width */
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style buttons */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    height: 40px;
+    width: 80%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px; /* Adds space between buttons */
+}
+
+button:hover {
+    background-color: #218838;
+}
+#mid p {
+    font-family: 'Arial', sans-serif; /* Changes font family */
+    font-size: 15px; /* Changes font size */
+    font-weight: normal; /* You can set this to 'bold' for bold text */
+    font-style: times ; /* Makes the text italic */
+    line-height: 1.5; /* Adjusts the spacing between lines */
+    color: #333; /* Changes text color */
+    text-align: center; /* Centers the text */
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Farming Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .sensor-box, .pest-panel, .control-panel, .alerts-panel {
+            width: 50%;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        input, textarea {
+            width: 80%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        video {
+            width: 80%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Smart Farming Dashboard</h1>
+    </header>
+    
+    <div class="container">
+        <!-- Alerts Panel -->
+        <section class="alerts-panel">
+            <h2>Alerts</h2>
+            <ul id="alertsList">
+                <li>No alerts currently.</li>
+            </ul>
+        </section>
+
+        <!-- Sensor Data Panel -->
+        <section class="sensor-box">
+            <h2>Real-Time Sensor Data</h2>
+            <label>Temperature:</label>
+            <input type="text" id="temperature" readonly>
+            <label>Humidity:</label>
+            <input type="text" id="humidity" readonly>
+        </section>
+
+        <!-- Pest Detection Panel -->
+        <section class="pest-panel">
+            <h2>Pest Detection</h2>
+            <input type="file" id="uploadImage" accept="image/*">
+            <button id="captureButton">Take Picture</button>
+            <video id="cameraFeed" style="display:none;" autoplay playsinline></video>
+            <canvas id="photoCanvas" style="display:none;"></canvas>
+            <button id="detectPest">Detect Pest</button>
+            <p id="pestResult">Upload an image to detect pests.</p>
+        </section>
+
+        <!-- Control Measures Panel -->
+        <section class="control-panel">
+            <h2>Control Measures</h2>
+            <textarea id="controlAdvice" readonly>Control recommendations will appear here.</textarea>
+        </section>
+    </div>
+
+    <script>
+        function updateSensorData() {
+            let temperature = (Math.random() * 10 + 20).toFixed(1);
+            let humidity = (Math.random() * 20 + 40).toFixed(1);
+            
+            document.getElementById('temperature').value = temperature + ' °C';
+            document.getElementById('humidity').value = humidity + ' %';
+
+            checkForPestRisk(temperature, humidity);
+        }
+
+        function checkForPestRisk(temp, hum) {
+            let alertsList = document.getElementById('alertsList');
+            alertsList.innerHTML = "";
+
+            if (temp > 28 || hum > 70) {
+                let alertItem = document.createElement('li');
+                alertItem.textContent = "⚠️ High temperature or humidity detected! Increased risk of pests.";
+                alertsList.appendChild(alertItem);
+                autoTriggerPestDetection();
+            } else {
+                let alertItem = document.createElement('li');
+                alertItem.textContent = "No alerts currently.";
+                alertsList.appendChild(alertItem);
+            }
+        }
+
+        function autoTriggerPestDetection() {
+            document.getElementById('pestResult').textContent = "Auto-triggering pest detection due to environmental conditions...";
+        }
+
+        setInterval(updateSensorData, 5000); // Update sensor data every 5 seconds
+
+        // Camera Functionality
+        const video = document.getElementById('cameraFeed');
+        const canvas = document.getElementById('photoCanvas');
+        const captureButton = document.getElementById('captureButton');
+        let cameraActive = false;
+        const constraints = {
+            video: { facingMode: "environment" }
+        };
+
+        async function toggleCamera() {
+            if (!cameraActive) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                    video.srcObject = stream;
+                    video.style.display = "block";
+                    captureButton.textContent = "Close Camera";
+                    cameraActive = true;
+                } catch (err) {
+                    console.error("Error accessing camera: ", err);
+                }
+            } else {
+                let tracks = video.srcObject.getTracks();
+                tracks.forEach(track => track.stop());
+                video.srcObject = null;
+                video.style.display = "none";
+                captureButton.textContent = "Take Picture";
+                cameraActive = false;
+            }
+        }
+
+        captureButton.addEventListener('click', toggleCamera);
+    </script>
+</body>
+</html>
